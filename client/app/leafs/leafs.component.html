@@ -1,0 +1,71 @@
+<app-loading [condition]="isLoading"></app-loading>
+
+<app-toast [message]="toast.message"></app-toast>
+
+<div class="card" *ngIf="!isLoading">
+  <h4 class="card-header">Current leafs ({{leafs.length}})</h4>
+  <div class="card-block">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-default">
+        <tr>
+          <th>Name</th>
+          <th>Size</th>
+          <th>Color</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="leafs.length === 0">
+        <tr>
+          <td colspan="4">There are no leafs in the DB. Add a new leaf below.</td>
+        </tr>
+      </tbody>
+      <tbody *ngIf="!isEditing">
+        <tr *ngFor="let leaf of leafs">
+          <td>{{leaf.name}}</td>
+          <td>{{leaf.size}}</td>
+          <td>{{leaf.color}}</td>
+          <td>
+            <button class="btn btn-sm btn-warning" (click)="enableEditing(leaf)"><i class="fa fa-pencil"></i> Edit</button> <button class="btn btn-sm btn-danger" (click)="deleteLeaf(leaf)"><i class="fa fa-trash"></i> Delete</button>
+          </td>
+        </tr>
+      </tbody>
+      <tbody *ngIf="isEditing">
+        <tr>
+          <td colspan="4">
+            <form class="form-inline" #form="ngForm" (ngSubmit)="editLeaf(leaf)" style="display:inline">
+              <div class="form-group">
+                  <input class="form-control" type="text" name="name" [(ngModel)]="leaf.name" placeholder="Name" required>
+              </div>
+              <div class="form-group">
+                  <input class="form-control" type="text" name="size" [(ngModel)]="leaf.size" placeholder="Size" required>
+              </div>
+              <div class="form-group">
+                  <input class="form-control" type="text" name="color" [(ngModel)]="leaf.color" placeholder="Color" required>
+              </div>
+              <button class="btn btn-sm btn-primary" type="submit" [disabled]="!form.form.valid"><i class="fa fa-floppy-o"></i> Save</button>
+            </form>
+            <button class="btn btn-sm btn-warning" (click)="cancelEditing()"><i class="fa fa-times"></i> Cancel</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="card" *ngIf="!isEditing">
+  <h4 class="card-header">Add new leaf</h4>
+  <div class="card-block">
+    <form class="form-inline" [formGroup]="addLeafForm" (ngSubmit)="addLeaf()" style="text-align:center">
+      <div class="form-group">
+          <input class="form-control" type="text" name="name" formControlName="name" placeholder="Name">
+      </div>
+      <div class="form-group">
+          <input class="form-control" type="text" name="size" formControlName="size" placeholder="Size">
+      </div>
+      <div class="form-group">
+          <input class="form-control" type="text" name="color" formControlName="color" placeholder="Color">
+      </div>
+      <button class="btn btn-primary" type="submit" [disabled]="!addLeafForm.valid"><i class="fa fa-floppy-o"></i> Add</button>
+    </form>
+  </div>
+</div>
