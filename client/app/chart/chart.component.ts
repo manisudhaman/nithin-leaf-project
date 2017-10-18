@@ -48,6 +48,7 @@ export class ChartComponent implements OnInit {
       },
       error => console.log(error),
       () => {
+        this.leafsAggregate.push({total: 0, _id: ''});
         this.barChartData = this.leafsAggregate.map(this.normalizeChartData);
         this.isLoading = false;
       }
@@ -69,7 +70,9 @@ export class ChartComponent implements OnInit {
       },
       error => console.log(error),
       () => {
+        this.leafsAggregate.push({total: 0, _id: ''});
         this.barChartData = this.leafsAggregate.map(this.normalizeChartData);
+        this.isLoading = false;
       }
     );
   }
