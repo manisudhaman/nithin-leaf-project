@@ -29,11 +29,11 @@ export class LeafService {
   }
 
   getLeafByColor(): Observable<any> {
-    return this.http.get('/api/leaf/color').map(res => res.json());
+    return this.http.get('/api/leafs/color').map(res => res.json());
   }
 
   getLeafBySize(): Observable<any> {
-    return this.http.get('/api/leaf/size').map(res => res.json());
+    return this.http.get('/api/leafs/size').map(res => res.json());
   }
 
   editLeaf(leaf): Observable<any> {

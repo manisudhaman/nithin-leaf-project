@@ -5,7 +5,7 @@
     <button class="btn btn-primary" (click)="chartByColor()">Color</button>
     <button class="btn btn-primary" (click)="chartBySize()">Size</button>
   </div>
-  <div style="display: block">
+  <div style="display: block" *ngIf="!isLoading">
     <canvas baseChart
             [datasets]="barChartData"
             [labels]="barChartLabels"

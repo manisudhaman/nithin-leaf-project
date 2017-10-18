@@ -5,14 +5,14 @@ export default class LeafCtrl extends BaseCtrl {
   model = Leaf;
 
   getByColor = (req, res) => {
-    this.model.aggregate([{"$group" : {_id:"$color", count:{$sum:1}}}], (err, docs) => {
+    this.model.aggregate([{"$group" : {_id:"$color", total:{$sum: "$count"}}}], (err, docs) => {
       if (err) { return console.error(err); }
       res.json(docs);
     });
   }
 
   getBySize = (req, res) => {
-    this.model.aggregate([{"$group" : {_id:"$size", count:{$sum:1}}}], (err, docs) => {
+    this.model.aggregate([{"$group" : {_id:"$size", total:{$sum: "$count"}}}], (err, docs) => {
       if (err) { return console.error(err); }
       res.json(docs);
     });
