@@ -10,11 +10,13 @@ import { LeafService } from '../services/leaf.service';
 export class ChartComponent implements OnInit {
   leafs = [];
   isLoading = true;
+  leafByProperty = {};
+  leafsAggregate = [];
   constructor(private leafService: LeafService) { }
 
   ngOnInit() {
     this.getLeafs();
-    this.chartByColor();
+    // this.chartByColor();
   }
 
   public barChartOptions: any = {
@@ -40,11 +42,29 @@ export class ChartComponent implements OnInit {
 
   chartByColor() {
     this.barChartLabels = this.leafs.map(this.getLeafByColor);
-    // this.barChartData =
+    this.leafByProperty = this.leafService.getLeafByColor().subscribe(
+      data => this.leafsAggregate = data,
+      error => console.log(error),
+      () => this.isLoading = false
+    );
+    this.barChartData = this.leafsAggregate.map(this.normalizeChartData);
   }
 
   getLeafByColor(leaf) {
     return leaf.color;
+  }
+
+  normalizeChartData(leaf) {
+    return { data: leaf.count, label: String(leaf._id) }
+  }
+
+  chartBySize() {
+    this.barChartLabels = this.leafs.map(this.getLeafBySize);
+    // this.barChartData =
+  }
+
+  getLeafBySize(leaf) {
+    return leaf.size;
   }
 
   // events
