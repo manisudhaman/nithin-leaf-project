@@ -11,6 +11,6 @@
 #System Files
 .DS_Store
 Thumbs.db
-# .env
+.env
 package-lock.json
 /yarn.lock
