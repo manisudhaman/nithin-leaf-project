@@ -21,6 +21,7 @@ export class LeafsComponent implements OnInit {
   name = new FormControl('', Validators.required);
   size = new FormControl('', Validators.required);
   color = new FormControl('', Validators.required);
+  count = new FormControl('', Validators.required);
 
   constructor(private leafService: LeafService,
               private formBuilder: FormBuilder,
@@ -32,7 +33,8 @@ export class LeafsComponent implements OnInit {
     this.addLeafForm = this.formBuilder.group({
       name: this.name,
       size: this.size,
-      color: this.color
+      color: this.color,
+      count: this.count
     });
   }
 

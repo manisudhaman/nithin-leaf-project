@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { LeafsComponent } from './leafs/leafs.component';
+import { ChartComponent } from './chart/chart.component';
 import { AboutComponent } from './about/about.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
@@ -16,11 +17,12 @@ import { AuthGuardAdmin } from './services/auth-guard-admin.service';
 const routes: Routes = [
   { path: '', component: AboutComponent },
   { path: 'leafs', component: LeafsComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'logout', component: LogoutComponent },
-  { path: 'account', component: AccountComponent, canActivate: [AuthGuardLogin] },
-  { path: 'admin', component: AdminComponent, canActivate: [AuthGuardAdmin] },
+  { path: 'chart', component: ChartComponent },
+  // { path: 'register', component: RegisterComponent },
+  // { path: 'login', component: LoginComponent },
+  // { path: 'logout', component: LogoutComponent },
+  // { path: 'account', component: AccountComponent, canActivate: [AuthGuardLogin] },
+  // { path: 'admin', component: AdminComponent, canActivate: [AuthGuardAdmin] },
   { path: 'notfound', component: NotFoundComponent },
   { path: '**', redirectTo: '/notfound' },
 ];

@@ -17,7 +17,9 @@
     "predev": "tsc -p server",
     "dev": "concurrently \"ng serve -pc proxy.conf.json --open\" \"tsc -w -p server\" \"nodemon dist/server/app.js\"",
     "prod": "concurrently \"mongod\" \"ng build -aot -prod && tsc -p server && node dist/server/app.js\"",
-    "dev-debug": "concurrently --kill-others \"npm run build-client:watch\"  \"npm run build-server:watch\"  \"nodemon --debug=5858 dist/server/app.js\"",
+    "dev-debug": "concurrently --kill-others \"npm run build-client:watch\"  \"npm run build-server:watch\"  \"nodemon dist/server/app.js\"",
+    "build-client:watch": "ng build --watch",
+    "build-server:watch": "tsc -w -p server",
     "test": "ng test",
     "testbe": "tsc -p server && mocha dist/server/test --exit",
     "lint": "ng lint",
@@ -48,7 +50,9 @@
     "morgan": "^1.9.0",
     "rxjs": "^5.4.2",
     "tether": "1.4.0",
-    "zone.js": "^0.8.14"
+    "zone.js": "^0.8.14",
+    "chart.js": "^2.7.0",
+    "ng2-charts": "^1.6.0"
   },
   "devDependencies": {
     "@angular/cli": "1.4.7",

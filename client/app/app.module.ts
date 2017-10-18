@@ -9,6 +9,7 @@ import { AuthGuardLogin } from './services/auth-guard-login.service';
 import { AuthGuardAdmin } from './services/auth-guard-admin.service';
 import { AppComponent } from './app.component';
 import { LeafsComponent } from './leafs/leafs.component';
+import { ChartComponent } from './chart/chart.component';
 import { AboutComponent } from './about/about.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
@@ -16,11 +17,13 @@ import { LogoutComponent } from './logout/logout.component';
 import { AccountComponent } from './account/account.component';
 import { AdminComponent } from './admin/admin.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
     AppComponent,
     LeafsComponent,
+    ChartComponent,
     AboutComponent,
     RegisterComponent,
     LoginComponent,
@@ -31,7 +34,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
   ],
   imports: [
     RoutingModule,
-    SharedModule
+    SharedModule,
+    ChartsModule
   ],
   providers: [
     AuthService,

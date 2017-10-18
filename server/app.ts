@@ -38,7 +38,7 @@ mongodb
 
     if (!module.parent) {
       app.listen(app.get('port'), () => {
-        console.log('Angular Full Stack listening on port ' + app.get('port'));
+        console.log('Nithin Leaf Project listening on port ' + app.get('port'));
       });
     }
 
