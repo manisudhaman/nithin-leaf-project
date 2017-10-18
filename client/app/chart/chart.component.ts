@@ -15,13 +15,20 @@ export class ChartComponent implements OnInit {
   constructor(private leafService: LeafService) { }
 
   ngOnInit() {
-    this.getLeafs();
+    // this.getLeafs();
     this.chartByColor();
   }
 
   public barChartOptions: any = {
     scaleShowVerticalLines: false,
-    responsive: true
+    responsive: true,
+    scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
   };
   //public barChartLabels: string[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
   public barChartLabels: string[] = [];
@@ -48,8 +55,8 @@ export class ChartComponent implements OnInit {
       },
       error => console.log(error),
       () => {
-        this.leafsAggregate.push({total: 0, _id: ''});
-        this.barChartData = this.leafsAggregate.map(this.normalizeChartData);
+        let clone = this.leafsAggregate.map(this.normalizeChartData);
+        this.barChartData = clone;
         this.isLoading = false;
       }
     );
@@ -70,8 +77,8 @@ export class ChartComponent implements OnInit {
       },
       error => console.log(error),
       () => {
-        this.leafsAggregate.push({total: 0, _id: ''});
-        this.barChartData = this.leafsAggregate.map(this.normalizeChartData);
+        let clone = this.leafsAggregate.map(this.normalizeChartData);
+        this.barChartData = clone;
         this.isLoading = false;
       }
     );
